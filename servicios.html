@@ -1,14 +1,14 @@
 <!DOCTYPE HTML>
 <html lang="es">
     <head>
-        <meta charset="utf-8">
         <title>Servicios | Auto-Red - Tu red de servicios automotrices</title>
         <link href="css/estilo.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="js/funciones.js" type="text/javascript"></script>
         <script src="js/funcioneslogin.js" type="text/javascript"></script>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
     </head>
-    <body onload="slides();">
+    <body onload="slides();Chat();">
         <!-- header  -->
         <div class="fila">
             <div class="header">
@@ -17,11 +17,11 @@
                     <a href="index.html"><img src="images/logo.png" alt="Auto-Red" style="display:block;float:left;"></a>
                 </div>
                 <!-- login -->
-                <form class="login" id="login" action="servicios/gettoken.php">
+                <form class="login" id="login">
                     <div class="campos">
-                        <input name="usuario" type="text" placeholder="Usuario" class="campo"></input>
-                        <input name="contrasena" type="password" placeholder="Contraseña" class="campo"></input>
-                        <button type="submit" class="boton" onclick="obtenerToken(1);">Ingresar</button>
+                        <input id="varUsuario" name="varUsuario" type="text" placeholder="Usuario" class="campo"></input>
+                        <input id="varContrasena" name="varContrasena" type="password" placeholder="Contraseña" class="campo"></input>
+                        <input type="button" class="boton" value="Ingresar" id="boton" onclick="obtenerToken(1);"/>
                     </div>
                 </form>
             </div>
@@ -50,7 +50,7 @@
                           gran cantidad de servicios, puedes realizar búsquedas por categoría, hacer
                           una licitación para un trabajo, recibir atención por chat o por teléfono.</p>
                         <p draggable="true">
-                            <a class="boton1">Registrate ahora</a>
+                            <a class="boton1" href="registro.html">Registrate ahora</a>
                         </p>
                     </div>
                     <div class="slide">
@@ -64,12 +64,11 @@
                         <h1>Bienvenido a</br>
                             <b>Auto-Red</b>
                         </h1>
-                        <p class="articulo"><b>Auto-Red,</b> es una red de auto servicios, donde siempre encontraras la mejor
-                          opción para mantener tu automovil en buen estado, Auto-red cuenta con una
-                          gran cantidad de servicios, puedes realizar búsquedas por categoría, hacer
-                          una licitación para un trabajo, recibir atención por chat o por teléfono.</p>
+                        <p class="articulo"><b>Auto-Red,</b>Gracias por Visitar AUTORED, el lugar donde su auto recibirá la rehabilitación
+                                                     para que funcione correctamente, contamos con profesionales mecánicos con amplia experiencia 
+                                                     en vehículos nacionales y extranjeros siempre con la confianza de saber que su auto estará en manos de      Expertos!! .</p>
                         <p draggable="true">
-                            <a class="boton1">Registrate ahora</a>
+                            <a class="boton1" href="registro.html">Registrate ahora</a>
                         </p>
                     </div>
                     <div class="slide">
@@ -83,12 +82,12 @@
                         <h1>Bienvenido a</br>
                             <b>Auto-Red</b>
                         </h1>
-                        <p class="articulo"><b>Auto-Red,</b> es una red de auto servicios, donde siempre encontraras la mejor
-                          opción para mantener tu automovil en buen estado, Auto-red cuenta con una
-                          gran cantidad de servicios, puedes realizar búsquedas por categoría, hacer
-                          una licitación para un trabajo, recibir atención por chat o por teléfono.</p>
+                        <p class="articulo"><b>Auto-Red,</b>Servicio mecánico a domicilio, su auto no camina por una flecha en mal estado?,
+                                   la bomba de agua o de gasolina falla?, la banda de tiempo?  
+                                 No pague grúa, usted puede contactar a cualquier proveedor de servicio de AUTORED,
+                                          a precios económicos,  pida su presupuesto sin compromiso!!.</p>
                         <p draggable="true">
-                            <a class="boton1">Registrate ahora</a>
+                            <a class="boton1" href="registro.html">Registrate ahora</a>
                         </p>
                     </div>
                     <div class="slide">
@@ -107,13 +106,13 @@
 					Auto-red cuenta con una gran cantidad de servicios para que encuentres
                     lo que buscas en el menor tiempo posible o hacer una licitación para un
                     trabajo específico.</p>
-					<p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-					adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore
-					et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam,
-					quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut
-					aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit
-					qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum
-					qui dolorem eum fugiat quo voluptas nulla pariatur.
+					<p>Auto-red permite explorar todos los proveedores registrados en el sistema.
+                                              Los proveedores están categorizados según el tipo de  servicio que desempeñan. 
+                                              Usted encontrará información precisa y detallada sobre los proveedores que se registren en Auto-red, 
+                                              así como los servicios que ofrecen todos los proveedores mecánicos de la región.
+                                               Encuentra fácilmente el servicio que necesitas en las diferentes categorías de nuestro directorio 
+                                               de proveedores asociados a Auto-red.
+
 					<a href="#"><img src="images/arrow.gif" alt=""></a>
                 </article>
             </div>
@@ -124,13 +123,11 @@
                     <p>Auto-red te ofrece la oportunidad de hacer conocer tu trabajo y tener
                     más clientes, tus clientes evaluaran tu servicio en base a el trabajo realizado,
                     calidad, atención, precio, etc.</p>
-					<p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-					adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore
-					et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam,
-					quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut
-					aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit
-					qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum
-					qui dolorem eum fugiat quo voluptas nulla pariatur.
+					<p>En Auto-red Te damos la posibilidad de ofrecer tus servicios y te facilitamos el contacto con tus clientes.
+                                               Los clientes podrán encontrar tu taller desde Auto-red y adquirir de tus servicios de manera rápida y sencilla.!!
+                                               Haz realidad tu historia de éxito, con los privilegios de la publicidad en línea!
+                                               Auto-red es la herramienta más eficiente para estar cerca de miles de clientes que diariamente consultan nuestra página,
+                                               haciendo de tu negocio su primera opción!.
 					<a href="#"><img src="images/arrow.gif" alt=""></a>
                 </article>
             </div>
@@ -141,13 +138,11 @@
                     <p>¿Tu carro no enciende?, ¿se te poncho una llanta? ¿no sabes a quien llamar?
                     Auto-red cuenta con asesores telefónicos, para que te ayuden en estos casos,
                     llámanos!.</p>
-					<p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-					adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore
-					et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam,
-					quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut
-					aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit
-					qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum
-					qui dolorem eum fugiat quo voluptas nulla pariatur.
+					<p>Te facilitamos el proceso de adquirir un servicio ya que puedes elegir de nuestra lista de proveedores el que más se ajuste a lo que tú necesitas.
+                                               En auto-red se logra la máxima satisfacción de nuestros usuarios, que sin importar el tipo de servicio que requieran, 
+                                               obtienen resultados de calidad para tomar sus mejores decisiones al adquirir un servicio, ya que
+                                               anunciamos constantemente nuevos proveedores.
+                                               Auto-red la manera mas fácil y rápida de encontrar el servicio que necesitas.!
 					<a href="#"><img src="images/arrow.gif" alt=""></a>
                 </article>
             </div>
@@ -167,13 +162,16 @@
                 <div class="footer">
                     <h1><b>Auto-Red </b>Tu red personal de auto servicios</h1>
                     <p>
+		      <b>Desarrollado por: </b>SOLTIC Enterprise S.A.
+		      <br>
                       <b>Direccion:</b>Carretera libre a Tecate Km10, El Refugio
                       <br>
                       <b>Telefono:</b>(664) 650-9525
                       <br>
                       <b>Correo:</b>
-                      <a href="mailto: juans@auto-red.wc.lt">aclientes@auto-red.com.mx</a>
-                    </p>
+                      <a href="mailto: juans@auto-red.wc.lt">juans@auto-red.wc.lt</a>, 
+		      <a href="mailto: krishnam@auto-red.wc.lt">krishnam@auto-red.wc.lt</a>
+		      <br><b>Auto-Red ©, SOLTIC Enterprise ® </b>2015 
                 </div>
             </div>
         </div>
