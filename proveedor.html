@@ -1,0 +1,288 @@
+<!DOCTYPE HTML>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Proveedor | Auto-Red - Tu red de servicios automotrices</title>
+        <link href="css/estilo.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/funciones.js" type="text/javascript"></script>
+        <script src="js/svg.js" type="text/javascript"></script>
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=true_or_false"></script>
+	<script src="js/catalogos.js" type="text/javascript"></script>
+        <script src="js/funcioneslogin.js" type="text/javascript"></script>
+    </head>
+    <body onload="iniciar();">
+        <!-- header  -->
+        <div class="fila">
+            <div class="header">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="proveedor.html"><img src="images/logo.png" alt="Auto-Red" style="display:block;float:left;"></a>
+                </div>
+                <!-- informacion de usuario -->
+                <div class="usuario">
+                    <div class="col-12">
+                        <h4 id="varNombre" name="varNombre"></h4>
+                        <img id="varFoto" class="foto"></img>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="nav">
+                    <ul>
+                        <li class="activo"><a href="proveedor.html">Proveedor</a></li>
+                        <li><a href="perfil.html">Perfil</a></li>
+                        <li class="salir"><a href="index.html" onclick="cerrarSesion()">Salir</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- contenido  -->
+        <div class="fila">
+            <div class="noticias">
+                <!-- noticias -->
+                <div id="slide1">
+                    <div class="col-12">
+                        <h1>Bienvenido a</br>
+                            <b>Auto-Red</b>
+                        </h1>
+                        <p class="articulo"><b>Auto-Red,</b> es una red de auto servicios, donde siempre encontraras la mejor
+                          opción para mantener tu automovil en buen estado, Auto-red cuenta con una
+                          gran cantidad de servicios, puedes realizar búsquedas por categoría, hacer
+                          una licitación para un trabajo, recibir atención por chat o por teléfono.</p>
+                    </div>
+                    <div class="slide">
+                        <a class="slides" id="activo">1</a>
+                        <a class="slides" onclick="slide2();">2</a>
+                        <a class="slides" onclick="slide3();">3</a>
+                    </div>
+                </div>
+                <div id="slide2">
+                    <div class="col-12">
+                        <h1>Bienvenido a</br>
+                            <b>Auto-Red</b>
+                        </h1>
+                        <p class="articulo"><b>Auto-Red,</b> es una red de auto servicios, donde siempre encontraras la mejor
+                          opción para mantener tu automovil en buen estado, Auto-red cuenta con una
+                          gran cantidad de servicios, puedes realizar búsquedas por categoría, hacer
+                          una licitación para un trabajo, recibir atención por chat o por teléfono.</p>
+                    </div>
+                    <div class="slide">
+                        <a class="slides" onclick="slide1();">1</a>
+                        <a class="slides" id="activo">2</a>
+                        <a class="slides" onclick="slide3();">3</a>
+                    </div>
+                </div>
+                <div id="slide3">
+                    <div class="col-12">
+                        <h1>Bienvenido a</br>
+                            <b>Auto-Red</b>
+                        </h1>
+                        <p class="articulo"><b>Auto-Red,</b> es una red de auto servicios, donde siempre encontraras la mejor
+                          opción para mantener tu automovil en buen estado, Auto-red cuenta con una
+                          gran cantidad de servicios, puedes realizar búsquedas por categoría, hacer
+                          una licitación para un trabajo, recibir atención por chat o por teléfono.</p>
+                    </div>
+                    <div class="slide">
+                        <a class="slides" onclick="slide1();">1</a>
+                        <a class="slides" onclick="slide2();">2</a>
+                        <a class="slides" id="activo">3</a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <!-- contenido general de la pagina -->
+            <!-- Forma -->
+            <div class="fila">
+              <div class="col-12" id="usuario">
+                  <h1>Bienvenido <b>a Auto-Red</b></h1><hr>
+                <div class="col-2" id="foto">
+                  <img id="varFoto2" class="img-usuario">
+                </div>
+                <div class="col-7" id="marco">
+                  <div class="fila">
+		    <a class="boton1" id="notificacion" title="Notificaciones" onclick="abrirEvaluar();">0</a>
+                    <h1 id="varNombre2" name="varNombre2"><span>Aqui se muestra tu calificación general por las 5 categorias evaluadas.</span></h1>
+                  </div>
+                    <h3 id="Cal">Calificacion: </h3>
+                  <div class="fila">
+                    <div class="stars">
+                      <input type="radio" name="rating" id="star5" value="5">
+                      <label for="star5"></label>
+                      <input type="radio" name="rating" id="star4" value="4">
+                      <label for="star4"></label>
+                      <input type="radio" name="rating" id="star3" value="3">
+                      <label for="star3"></label>
+                      <input type="radio" name="rating" id="star2" value="2">
+                      <label for="star2"></label>
+                      <input type="radio" name="rating" id="star1" value="1">
+                      <label for="star1"></label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div class="fila">
+              <div class="col-12">
+                <div class="fila">
+                  <div class="col-12" id="usuario">
+                      <h1>Tus
+                          <b>calificaciones</b>
+                        </h1><hr>
+                        <h2>
+                      <b>Tus porcentajes en </b>Auto-Red</h2>
+                    <svg id="svgPie" width="70%" height="350" draggable="true"></svg>
+
+                    <h2 style="margin:10px 0px 0px 10px;">
+                      <b>Gráfica </b>de Rendimiento</h2>
+                    <svg id="svgBarra" width="70%" height="340"></svg>
+                  </div>
+                </div>
+                <hr>
+                <div class="fila" id="usuario">
+                  <h2>Top<b>5</b></h2>
+                  <div class="colx5">
+                    <h3>Motores</h3>
+                    <table id="motor2" class="table" cellpadding="0" cellspacing="0">
+					<thead>
+						<tr>
+							<th>No.</th>
+							<th>Nombre</th>
+							<th>Cal.</th>
+						</tr>
+					</thead>
+				</table>
+                </div>
+                  <div class="colx5">
+                    <h3>Transmisiones</h3>
+                    <table id="transmision2" class="table" cellpadding="0" cellspacing="0">
+                      <thead>
+                        <tr>
+                          <th>No.</th>
+                          <th>Nombre</th>
+                          <th>Cal.</th>
+                        </tr>
+                      </thead>
+                    </table>
+                  </div>
+                  <div class="colx5">
+                    <h3>Mofles</h3>
+                    <table id="mofle2" class="table" cellpadding="0" cellspacing="0">
+                      <thead>
+                        <tr>
+                          <th>No.</th>
+                          <th>Nombre</th>
+                          <th>Cal.</th>
+                        </tr>
+                      </thead>
+                    </table>
+                  </div>
+                  <div class="colx5">
+                    <h3>Suspensiones</h3>
+                    <table id="suspension2" class="table" cellpadding="0" cellspacing="0">
+                      <thead>
+                        <tr>
+                          <th>No.</th>
+                          <th>Nombre</th>
+                          <th>Cal.</th>
+                        </tr>
+                      </thead>
+                    </table>
+                  </div>
+                  <div class="colx5">
+                    <h3>Electrico</h3>
+                    <table id="electrico2" class="table"cellpadding="0" cellspacing="0">
+                      <thead>
+                        <tr>
+                          <th>No.</th>
+                          <th>Nombre</th>
+                          <th>Cal.</th>
+                        </tr>
+                      </thead>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <!-- footer -->
+        <div class="fila">
+            <div class="col-12">
+                <div class="nav">
+                    <ul>
+                        <li class="activo"><a href="proveedor.html">Proveedor</a></li>
+                        <li><a href="perfil.html">Perfil</a></li>
+                        <li class="salir"><a href="index.html">Salir</a></li>
+                    </ul>
+                </div>
+                <div class="footer">
+                    <h1><b>Auto-Red </b>Tu red personal de auto servicios</h1>
+                    <p>
+		      <b>Desarrollado por: </b>SOLTIC Enterprise S.A.
+		      <br>
+                      <b>Direccion:</b>Carretera libre a Tecate Km10, El Refugio
+                      <br>
+                      <b>Telefono:</b>(664) 650-9525
+                      <br>
+                      <b>Correo:</b>
+                      <a href="mailto: juans@auto-red.wc.lt">juans@auto-red.wc.lt</a>, 
+		      <a href="mailto: krishnam@auto-red.wc.lt">krishnam@auto-red.wc.lt</a>
+		      <br><b>Auto-Red ©, SOLTIC Enterprise ® </b>2015 
+                </div>
+            </div>
+        </div>
+    </body>
+	<div class="infoProveedor" id="informacion">
+		<div class="info">
+			<div class="col-12"><a class="boton1" id="cerrarInfo" onclick="cerrarInfo();">x</a></div>
+			<h1>Detalles <b>del Proveedor</b></h1>
+			<img id="fotoInfo" class="foto"></img>
+			<h2 id="nombres"></h2>
+			<div class="stars">
+				<input type="radio" name="rating" id="star5" value="5">
+				<label for="star5"></label>
+				<input type="radio" name="rating" id="star4" value="4">
+				<label for="star4"></label>
+				<input type="radio" name="rating" id="star3" value="3">
+				<label for="star3"></label>
+				<input type="radio" name="rating" id="star2" value="2">
+				<label for="star2"></label>
+				<input type="radio" name="rating" id="star1" value="1">
+				<label for="star1"></label>
+			</div><br><br><br>
+			<span id="user" style="display:none;"></span>
+			<span id="service" style="display:none;"></span>
+			<h4 id="cal">Calificación: </h4>
+            <h4 id="dir">Dirección:  </h4>
+            <h4 id="tel">Telefono:  </h4>
+            <h4 id="mail">Email:  </h4>
+            <h4 id="jobs">Trabajos en proceso: </h4>
+			<h4>Ubicación:</h4>
+			<div id="map2"></div>
+		</div>
+	</div>
+	<div class="evaluar" id="evaluar">
+        <div class="info">
+            <div class="col-12"><a class="boton1" id="cerrarInfo" onclick="cerrarEvaluar();">x</a></div>
+            <h1>Lista <b>de Trabajos</b></h1>
+            <div class="fila">
+                <table class="table">
+                    <thead>
+                        <th>#</th>
+                        <th>Cliente</th>
+                        <th>Servicio</th>
+                        <th>Status</th>
+                        <th>Acción</th>
+                    </thead>
+                    <tbody  id="trabajos">
+                        
+                    </tbody>
+                </table>
+            </div>
+            <hr>
+            <h4>Ubicación:</h4>
+            <div id="map" style="height:200px"></div>
+        </div>
+    </div>
+</html>
