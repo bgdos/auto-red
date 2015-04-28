@@ -76,7 +76,10 @@
 										"LATITUD":'.$proveedor -> getUbicacion() -> getLatitud().',
 										"LONGITUD":'.$proveedor -> getUbicacion() -> getLongitud().'';
 						}
-						$eva = $proveedor -> getEvaluaciones();
+						if (isset($_GET['servicio']))
+							$eva = new Evaluacion($proveedor->getNombreUsuario(),$_GET['servicio']);//agregado
+						else
+							$eva = $proveedor -> getEvaluaciones();
 						if($eva->getGeneral() != 0)
 						{
 							$json.=',"EVALUACIONES":{
