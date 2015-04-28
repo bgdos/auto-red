@@ -11,13 +11,6 @@ var idTimer = 0;
 var infop = 0;
 //trabajos
 var trabajos;
-//proveedores
-var proveedores;
-var motor = [];
-var trasmision = [];
-var mofles = [];
-var suspension = [];
-var electrico = [];
 //evaluaciones
 var evaluaciones;
 
@@ -527,7 +520,6 @@ function GuardarEvaluacion(a, c, p, t, r)
 }
 //Ubicacion de proveedores
 function Ubicacion(p){
-	proveedores = p;
 	var myOptions = {zoom:15,center:new google.maps.LatLng(sessionStorage.latitud, sessionStorage.longitud),mapTypeId: google.maps.MapTypeId.ROADMAP};
 	map = new google.maps.Map(document.getElementById("map"), myOptions);
 	var icon = 'http://google-maps-icons.googlecode.com/files/carrepair.png';
@@ -542,14 +534,26 @@ function Ubicacion(p){
         marcador(map, loc, texto,icon, prov);
 	}
 	// usuario principal
-	icon = 'http://google-maps-icons.googlecode.com/files/home.png';
-	marker = new google.maps.Marker({
+	if (document.getElementById('selectUbicacion').value==1)
+	{
+		icon = 'http://google-maps-icons.googlecode.com/files/home.png';
+		marker = new google.maps.Marker({
 		map: map, icon: icon, position: new google.maps.LatLng(sessionStorage.latitud, sessionStorage.longitud)});
 		infowindow = new google.maps.InfoWindow({content:"<b>"+ sessionStorage.nombre + ' ' + sessionStorage.apellidoPaterno +"</b><br/>" + sessionStorage.dirCalle + ' ' + sessionStorage.dirNumero + ' ' +sessionStorage.dirColonia + "<br/>" + sessionStorage.dirCiudad});
 		google.maps.event.addListener(marker, "click", function(){infowindow.open(map,marker);});
 		infowindow.open(map,marker);
-    
-		
+	}
+	else
+	{
+		if (navigator.geolocation) {
+			icon = 'http://google-maps-icons.googlecode.com/files/home.png';
+			navigator.geolocation.getCurrentPosition(posicion, mostrarError);
+		} 
+		else 
+		{ 
+			alert("La Geolocalización no es soportada  por este navegador.");
+		}
+	}
 }
 //Opcion Ubicacion cliente
 function UCliente(n){
@@ -667,14 +671,6 @@ function CargarEvaluar(e)
 	}
 	abrirEvaluar();
 }
-function cargarProveedoresPorServicio(mot, trans, mof, susp, elec)
-{
-	motor = mot;
-	trasmision = trans;
-	mofles = mof;
-	suspension = susp;
-	electrico = elec;
-}
 function registroUsuario()
 {
     if (document.getElementById("varTipo").value != 1)
@@ -684,11 +680,13 @@ function registroUsuario()
 }
 function revisarCheckBoxes()
 {
-    if (document.getElementById("varContrasenaR").value != document.getElementById("varContrasena2R").	value)
+	var si_no_hay_errores = false;
+    if (document.getElementById("varContrasenaR").value != document.getElementById("varContrasena2R").value)
     {
 		document.getElementById("botonR").value = "Error";
-        document.getElementById("botonR").disabled = true;
-        document.getElementById("alertaContrasena").style.display = "block";
+        	document.getElementById("botonR").disabled = true;
+        	document.getElementById("alertaContrasena").style.display = "block";
+		si_no_hay_errores  = false;
 	}
 	else
 	{
@@ -702,11 +700,11 @@ function revisarCheckBoxes()
 			{
 				document.getElementById("botonR").value = "Error";
 				document.getElementById("botonR").disabled = true;
-				document.getElementById("alertaServicios").style.display = "block";  
+				document.getElementById("alertaServicios").style.display = "block";
+				si_no_hay_errores  = false;
 			} 
 		}
 	}
-		
 }
 function quitarNotificacion()
 {
