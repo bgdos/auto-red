@@ -14,11 +14,15 @@ var o=1;
 var p=1;
 var q=1;
 
-var proveedoresServicio1 = [];
-var proveedoresServicio2 = [];
-var proveedoresServicio3 = [];
-var proveedoresServicio4 = [];
-var proveedoresServicio5 = [];
+//tablas
+var tabla;
+var tabla2;
+
+var motor = [];
+var transmision = [];
+var mofles = [];
+var suspension = [];
+var electrico = [];
 
 var proveedores;
 
@@ -27,6 +31,7 @@ function cargarProveedores()
 	
 	var x = new XMLHttpRequest();
 	x.open('GET', urlProveedores, true);
+	x.send();
 	x.onreadystatechange = function()
 	{
 		if (x.status == 200 & x.readyState == 4)
@@ -35,77 +40,133 @@ function cargarProveedores()
 			var respuestaJSON = JSON.parse(respuesta);
 			proveedores = respuestaJSON.Proveedores;
 			if(sessionStorage.idTipoPersonal == 2)
-				Ubicacion(proveedores);
-			var n1 = n2 = n3 = n4 = n5 = 0;
-			for(var i = 0; i < proveedores.length; i++)
 			{
-				var proveedor = proveedores[i];
-				var servicios = proveedor.SERVICIOS;
-				var calificacion = proveedor.EVALUACIONES.GENERAL;
-				for(var j = 0; j < servicios.length; j++)
-				{
-					var servicio = servicios[j];
-					if(servicio.ID == 1)
-					{
-						if(calificacion!= null)
-							"";
-						else
-							var calificacion = 0;
-						if(sessionStorage.idTipoPersonal == 2)
-							llenarTabla(document.getElementById('transmision'), proveedor, calificacion, a++, 1, n1);
-						llenarTop5(document.getElementById('transmision2'), proveedor, calificacion, m++, 1);
-						n1++;
-					}
-					else if(servicio.ID == 2)
-					{
-						if(calificacion!= null)
-							"";
-						else
-							var calificacion = 0;
-						if(sessionStorage.idTipoPersonal == 2)
-							llenarTabla(document.getElementById('suspension'), proveedor, calificacion, b++, 2, n2);
-						llenarTop5(document.getElementById('suspension2'), proveedor, calificacion, n++, 2);
-						n2++;
-					}
-					else if(servicio.ID == 3)
-					{
-						if(calificacion!= null)
-							"";
-						else
-							var calificacion = 0;
-						if(sessionStorage.idTipoPersonal == 2)
-							llenarTabla(document.getElementById('motor'), proveedor, calificacion, c++, 3, n3);
-						llenarTop5(document.getElementById('motor2'), proveedor, calificacion, o++, 3);
-						n3++;
-					}
-					else if(servicio.ID == 4)
-					{
-						if(calificacion!= null)
-							"";
-						else
-							var calificacion = 0;
-						if(sessionStorage.idTipoPersonal == 2)
-							llenarTabla(document.getElementById('mofle'), proveedor, calificacion, d++, 4, n4);
-						llenarTop5(document.getElementById('mofle2'), proveedor, calificacion, p++, 4);
-						n4++
-					}
-					else if(servicio.ID == 5)
-					{
-						if(calificacion!= null)
-							"";
-						else
-							var calificacion = 0;
-						if(sessionStorage.idTipoPersonal == 2)
-							llenarTabla(document.getElementById('electrico'), proveedor, calificacion, e++, 5, n5);
-						llenarTop5(document.getElementById('electrico2'), proveedor, calificacion, q++, 5);
-						n5++;
-					}
-					else{}
-				}
+				Ubicacion(proveedores);
+				llenarArreglos1();
 			}
 		}
 	}
+}
+function llenarArreglos1()
+{
+	var urlserv = urlProveedores + '?servicio=' + 1;
+	tabla = document.getElementById('transmision');
+	tabla2 = document.getElementById('transmision2');
+	var x = new XMLHttpRequest();
+	x.open('GET', urlserv , true);
 	x.send();
+	x.onreadystatechange = function()
+	{
+		if (x.status == 200 & x.readyState == 4)
+		{
+			var respuesta = x.responseText;
+			var respuestaJSON = JSON.parse(respuesta);
+			transmision = respuestaJSON.Proveedores;
+			for (var i = 0; i < transmision.length; i++)
+			{
+				llenarTabla(tabla, transmision[i], transmision[i].EVALUACIONES.GENERAL, a++, 1, i);
+				llenarTop5(tabla2, transmision[i], transmision[i].EVALUACIONES.GENERAL, m++, 1);
+			}
+			llenarArreglos2();
+		}
+	}
+}
+function llenarArreglos2()
+{
+	var urlserv = urlProveedores + '?servicio=' + 2;
+	tabla = document.getElementById('suspension');
+	tabla2 = document.getElementById('suspension2');
+	var x = new XMLHttpRequest();
+	x.open('GET', urlserv , true);
+	x.send();
+	x.onreadystatechange = function()
+	{
+		if (x.status == 200 & x.readyState == 4)
+		{
+			var respuesta = x.responseText;
+			var respuestaJSON = JSON.parse(respuesta);
+			suspension = respuestaJSON.Proveedores;
+			for (var i = 0; i < suspension.length; i++)
+			{
+				llenarTabla(tabla, suspension[i], suspension[i].EVALUACIONES.GENERAL, b++, 2, i);
+				llenarTop5(tabla2, suspension[i], suspension[i].EVALUACIONES.GENERAL, n++, 2);
+			}
+			llenarArreglos3();
+		}
+	}
+}
+function llenarArreglos3()
+{
+	var urlserv = urlProveedores + '?servicio=' + 3;
+	tabla = document.getElementById('motor');
+	tabla2 = document.getElementById('motor2');
+	var x = new XMLHttpRequest();
+	x.open('GET', urlserv , true);
+	x.send();
+	x.onreadystatechange = function()
+	{
+		if (x.status == 200 & x.readyState == 4)
+		{
+			var respuesta = x.responseText;
+			var respuestaJSON = JSON.parse(respuesta);
+			motor = respuestaJSON.Proveedores;
+			for (var i = 0; i < motor.length; i++)
+			{
+				llenarTabla(tabla, motor[i], motor[i].EVALUACIONES.GENERAL, c++, 3, i);
+				llenarTop5(tabla2, motor[i], motor[i].EVALUACIONES.GENERAL, o++, 3);
+			}
+			llenarArreglos4();
+		}
+	}
+}
+function llenarArreglos4()
+{
+	var urlserv = urlProveedores + '?servicio=' + 4;
+	tabla = document.getElementById('mofle');
+	tabla2 = document.getElementById('mofle2');
+	var x = new XMLHttpRequest();
+	x.open('GET', urlserv , true);
+	x.send();
+	x.onreadystatechange = function()
+	{
+		if (x.status == 200 & x.readyState == 4)
+		{
+			var respuesta = x.responseText;
+			var respuestaJSON = JSON.parse(respuesta);
+			mofles = respuestaJSON.Proveedores;
+			for (var i = 0; i < mofles.length; i++)
+			{
+				llenarTabla(tabla, mofles[i], mofles[i].EVALUACIONES.GENERAL, d++, 4, i);
+				llenarTop5(tabla2, mofles[i], mofles[i].EVALUACIONES.GENERAL, p++, 4);
+				n++;
+			}
+			llenarArreglos5();
+		}
+	}
+}
+function llenarArreglos5()
+{
+	var urlserv = urlProveedores + '?servicio=' + 5;
+	tabla = document.getElementById('electrico');
+	tabla2 = document.getElementById('electrico2');
+	var x = new XMLHttpRequest();
+	x.open('GET', urlserv , true);
+	x.send();
+	x.onreadystatechange = function()
+	{
+		if (x.status == 200 & x.readyState == 4)
+		{
+			var respuesta = x.responseText;
+			var respuestaJSON = JSON.parse(respuesta);
+			electrico = respuestaJSON.Proveedores;
+			for (var i = 0; i < electrico.length; i++)
+			{
+				llenarTabla	(tabla, electrico[i], electrico[i].EVALUACIONES.GENERAL, e++, 5, i);
+				llenarTop5(tabla2, electrico[i], electrico[i].EVALUACIONES.GENERAL, q++, 5);
+				n++;
+			}
+		}
+	}
 }
 function llenarTabla(top, prov, cal, id, serv, n)
 {
@@ -150,9 +211,22 @@ function llenarTop5(top, prov, cal, id, serv)
 }
 function LlenarInfo(proveedor, serv)
 {
-	for (var i = 0; i < proveedores.length; i++)
+	var arreglo;
+	if (serv == null)
+		arreglo = proveedores;
+	if (serv == 1)
+		arreglo = transmision;
+	if (serv == 2)
+		arreglo = suspension;
+	if (serv == 3)
+		arreglo = motor;
+	if (serv == 4)
+		arreglo = mofles;
+	if (serv == 5)
+		arreglo = electrico;
+	for (var i = 0; i < arreglo.length; i++)
 	{
-		var p = proveedores[i];
+		var p = arreglo[i];
 		if (proveedor == p.USERNAME)
 		{
 			cargarInfo(p, serv);
@@ -162,11 +236,6 @@ function LlenarInfo(proveedor, serv)
 }
 function llenarSelect()
 {
-	var select = document.getElementById('varTipo');
-	var object = document.createElement('option');
-	object.value = "";
-	object.text = "-";
-	select.appendChild(object);
 	//var x = new XMLHttpRequest();
 	x.open('GET', urlTipos, true);
 	x.onreadystatechange = function()
@@ -185,7 +254,6 @@ function llenarSelect()
 				object.value = tipo.ID;
 				object.text = tipo.DESCRIPCION;
 				select.appendChild(object);
-				registroUsuario();
 			}
 		}
 	}
@@ -218,16 +286,18 @@ function llenarServicios()
 	}
     x.send();
 }
-function ordenarTablaProveedores()
+function proveedoresServicio(idServicio)
 {
-	var motor = new table.sorter('motor');
-	motor.init('motor', 1);
-	var transmision = new table.sorter('transmision');
-	transmision.init('transmision', 1);
-	var mofle = new table.sorter('mofle');
-	mofle.init('mofle', 1);
-	var suspension = new table.sorter('suspension');
-	suspension.init('suspension', 1);
-	var electrico = new table.sorter('electrico');
-	electrico.init('electrico', 1);
+	if(idServicio==0)
+		Ubicacion(proveedores);
+	if(idServicio==1)
+		Ubicacion(transmision);
+	if(idServicio==2)
+		Ubicacion(suspension);
+	if(idServicio==3)
+		Ubicacion(motor);
+	if(idServicio==4)
+		Ubicacion(mofles);
+	if(idServicio==5)
+		Ubicacion(electrico);
 }
