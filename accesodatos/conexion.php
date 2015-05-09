@@ -1,10 +1,10 @@
 <?php
 	class Conexion
 	{
-		private static $servidor = 'mysql.hostinger.mx';
-		private static $baseDatos = 'u325612117_auto';
-		private static $usuario = 'u325612117_root';
-		private static $contrasena = 'adivina';
+		private static $servidor = 'myserver;
+		private static $baseDatos = 'mybd';
+		private static $usuario = 'myusr';
+		private static $contrasena = 'mypass';
 		protected static $conexion;
 		
 		protected static function abrirConexion()
