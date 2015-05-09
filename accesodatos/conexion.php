@@ -1,7 +1,7 @@
 <?php
 	class Conexion
 	{
-		private static $servidor = 'myserver;
+		private static $servidor = 'myserver';
 		private static $baseDatos = 'mybd';
 		private static $usuario = 'myusr';
 		private static $contrasena = 'mypass';
